@@ -1,16 +1,48 @@
 {
-  // 使用 IntelliSense 了解相关属性。
-  // 悬停以查看现有属性的描述。
-  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "debug nestjs",
+      "name": "Debug NestJS (Yarn)",
       "request": "launch",
-      "runtimeArgs": ["start:dev"],
-      "runtimeExecutable": "pnpm",
-      "skipFiles": ["<node_internals>/**"],
+      "runtimeArgs": [
+        "start:dev"
+      ],
+      "runtimeExecutable": "yarn",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "sourceMapPathOverrides": {
+        "../../../src/*": "${workspaceFolder}/src/*",
+        "../src/*": "${workspaceFolder}/src/*"
+      }
+    },
+    {
+      "name": "Attach to NestJS",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "type": "node"
+    },
+    {
+      "name": "Debug NestJS Tests",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "test:e2e"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
